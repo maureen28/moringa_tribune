@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{{block.super}}
+{% block content %}
+
+<div class="container">
+<h1 class='text-center'>News for {{date|date:"l d-F Y"}}</h1><hr>
+
+  <!-- Looping through news   -->
+  {% for news_item in news %}
+
+  <div class="row">
+    <!-- displaying News articles -->
+    <div class="col-md-4">
+      <h2 class="text-center"> {{ news_item.title }} </h2>
+      <!--Display news Article images  -->
+       <img src="{{ news_item.article_image.url }}" class="img-responsive" alt="Article Image">
+
+    </div>
+  </div>
+
+  {% empty %}
+  <div class="row">
+    <h2 class="text-center">There No News Items</h2>
+  </div>
+  {% endfor %}
+
+</div>
+
+{% endblock %}

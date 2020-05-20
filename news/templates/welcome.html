@@ -1,0 +1,7 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{{block.super}}
+{% comment %} {{request.user.is_authenticated}} {% endcomment %}
+<h1 class='text-center'>Welcome to Moringa Tribune!</h1>
+{% endblock %}
