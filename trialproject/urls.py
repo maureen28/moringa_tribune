@@ -15,19 +15,19 @@ Including another URLconf
 """
 from django.conf import settings
 from django.conf.urls.static import static
-from django.conf.urls import url
+from django.conf.urls import url, include
 from django.contrib import admin
 
-from blog.views import home_view
 from news.views import welcome, news_of_day, past_days_news, search_results, article
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'welcome/',welcome, name='welcome'),
     url(r'^search/', search_results, name='search_results'),
-    url(r'today/', news_of_day, name='news_of_day'),
+    url(r'', news_of_day, name='news_of_day'),
     url(r'^article/(\d+)', article, name ='article'),
-    url(r'',home_view, name='home'),
+    # url(r'^logout/$', logout, {"next_page": '/'}),
+     url(r'^accounts/', include('registration.backends.simple.urls')),
 ]
 if settings.DEBUG:
     urlpatterns+= static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
